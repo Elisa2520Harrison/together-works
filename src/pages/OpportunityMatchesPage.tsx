@@ -27,6 +27,7 @@ interface Demand {
 interface Match {
     id: number
     name: string
+    email: string
     initials: string
     matchScore: number
     capability: string
@@ -49,6 +50,7 @@ const matches: Match[] = [
         id: 1,
         name: 'Ama Mensah',
         initials: 'AM',
+        email: 'elizabethtemi1@gmail.com',
         matchScore: 96,
         capability: 'Hair braiding',
         location: 'Accra',
@@ -74,6 +76,7 @@ const matches: Match[] = [
     {
         id: 2,
         name: 'Akosua Beauty Hub',
+        email: 'estherbanga90@gmail.com',
         initials: 'AB',
         matchScore: 92,
         capability: 'Hair braiding & styling',
@@ -100,6 +103,7 @@ const matches: Match[] = [
     {
         id: 3,
         name: 'Nana Yaa Styles',
+        email: 'jenniferblebu702@gmail.com',
         initials: 'NY',
         matchScore: 87,
         capability: 'Hair braiding',
@@ -126,6 +130,7 @@ const matches: Match[] = [
     {
         id: 4,
         name: 'Esi Braids',
+        email: 'esibraids@gmail.com',
         initials: 'EB',
         matchScore: 81,
         capability: 'Hair braiding',
@@ -155,6 +160,7 @@ export default function OpportunityMatchesPage() {
 
     const [demand, setDemand] = useState<Demand | null>(null)
     const [invitedIds, setInvitedIds] = useState<number[]>([])
+    const [invitingId, setInvitingId] = useState<number | null>(null)
 
     useEffect(() => {
         const savedDemand = sessionStorage.getItem(
@@ -175,12 +181,61 @@ export default function OpportunityMatchesPage() {
         }
     }, [])
 
-    function handleInvite(id: number) {
-        setInvitedIds((current) =>
-            current.includes(id)
-                ? current
-                : [...current, id],
-        )
+    async function handleInvite(match: Match) {
+        if (invitedIds.includes(match.id) || invitingId === match.id) {
+            return
+        }
+
+        setInvitingId(match.id)
+
+        try {
+            const response = await fetch('/api/invitations', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    recipientEmail: match.email,
+                    recipientName: match.name,
+                    opportunityTitle:
+                        demand?.title ?? 'TogetherWorks opportunity',
+                    opportunityDescription:
+                        demand?.description ?? '',
+                    location:
+                        demand?.location ?? 'Not specified',
+                    deadline:
+                        demand?.deadline ?? 'Not specified',
+                    matchScore: match.matchScore,
+                    matchedReasons: match.matchedReasons,
+                }),
+            })
+
+            const result = await response.json()
+
+            if (!response.ok) {
+                throw new Error(
+                    result.error ||
+                    'Failed to send invitation',
+                )
+            }
+
+            setInvitedIds((current) =>
+                current.includes(match.id)
+                    ? current
+                    : [...current, match.id],
+            )
+        } catch (error) {
+            console.error(
+                'Failed to send invitation:',
+                error,
+            )
+
+            window.alert(
+                'We could not send the invitation. Please try again.',
+            )
+        } finally {
+            setInvitingId(null)
+        }
     }
 
     return (
@@ -267,7 +322,7 @@ export default function OpportunityMatchesPage() {
                                     {demand?.quantity
                                         ? `${demand.quantity} ${demand.unit}`
                                         : demand?.capability ??
-                                          'People'}
+                                        'People'}
                                 </p>
                             </div>
 
@@ -507,15 +562,14 @@ export default function OpportunityMatchesPage() {
 
                                     <button
                                         type="button"
-                                        onClick={() =>
-                                            handleInvite(match.id)
+                                        onClick={() => handleInvite(match)}
+                                        disabled={
+                                            invited || invitingId === match.id
                                         }
-                                        disabled={invited}
-                                        className={`inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition ${
-                                            invited
-                                                ? 'cursor-default bg-green-50 text-green-700'
-                                                : 'bg-[#5b3df5] text-white hover:bg-[#4728d9]'
-                                        }`}
+                                        className={`inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition ${invited
+                                            ? 'cursor-default bg-green-50 text-green-700'
+                                            : 'bg-[#5b3df5] text-white hover:bg-[#4728d9]'
+                                            }`}
                                     >
                                         {invited ? (
                                             <>
@@ -525,6 +579,8 @@ export default function OpportunityMatchesPage() {
                                                 />
                                                 Invitation sent
                                             </>
+                                        ) : invitingId === match.id ? (
+                                            'Sending invitation...'
                                         ) : (
                                             <>
                                                 Invite to opportunity
