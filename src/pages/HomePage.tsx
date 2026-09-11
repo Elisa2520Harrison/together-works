@@ -3,6 +3,7 @@ import {
     ArrowRight,
     CheckCircle2,
     MapPin,
+    Plus,
     Sparkles,
     Users,
 } from 'lucide-react'
@@ -60,13 +61,13 @@ export default function HomePage() {
                         />
 
                         <h1 className="mt-5 text-2xl font-bold text-[#171725]">
-                            Let's discover what you can build
+                            Welcome to TogetherWorks
                         </h1>
 
                         <p className="mx-auto mt-3 max-w-lg leading-7 text-gray-600">
-                            Tell us what you can bring and TogetherWorks will
-                            find opportunities where your capabilities could
-                            work with others.
+                            Tell us what you can bring or what you want to
+                            make happen, and we'll help connect the right
+                            capabilities.
                         </p>
 
                         <Link
@@ -128,7 +129,7 @@ export default function HomePage() {
                 <section>
                     <div className="flex items-center gap-2 text-sm font-semibold text-[#5b3df5]">
                         <Sparkles size={16} />
-                        AI opportunity discovery
+                        Better connections, better opportunities
                     </div>
 
                     <h1 className="mt-3 text-3xl font-bold tracking-tight text-[#171725] sm:text-4xl">
@@ -136,52 +137,178 @@ export default function HomePage() {
                     </h1>
 
                     <p className="mt-3 max-w-2xl text-base leading-7 text-gray-600 sm:text-lg">
-                        Here's what you could build with what you already
-                        have.
+                        What would you like to make happen today?
                     </p>
                 </section>
 
-                {/* Capability summary */}
-                <section className="mt-8 rounded-3xl border border-[#e5e7eb] bg-white p-5 shadow-sm sm:p-6">
-                    <div className="flex items-start gap-4">
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#eeeaff] text-[#5b3df5]">
-                            <Sparkles size={21} />
-                        </div>
-
-                        <div className="min-w-0">
-                            <p className="text-sm font-semibold text-[#171725]">
-                                What you bring
-                            </p>
-
-                            <div className="mt-3 flex flex-wrap gap-2">
-                                {userCapabilities.length > 0 ? (
-                                    userCapabilities.map((capability) => (
-                                        <span
-                                            key={capability}
-                                            className="rounded-full bg-[#f8f9fc] px-3 py-1.5 text-xs font-medium text-gray-700"
-                                        >
-                                            {capability}
-                                        </span>
-                                    ))
-                                ) : (
-                                    <span className="text-sm text-gray-400">
-                                        We're still learning about your
-                                        capabilities.
-                                    </span>
-                                )}
+                {/* Main actions */}
+                <section className="mt-8 grid gap-5 md:grid-cols-2">
+                    {/* What I bring */}
+                    <button
+                        type="button"
+                        onClick={() => navigate('/onboarding')}
+                        className="group rounded-3xl border border-[#e5e7eb] bg-white p-6 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-[#5b3df5]/30 hover:shadow-md"
+                    >
+                        <div className="flex items-start justify-between gap-4">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eeeaff] text-[#5b3df5]">
+                                <Sparkles size={22} />
                             </div>
 
-                            {profile.location && (
-                                <div className="mt-4 flex items-center gap-1.5 text-xs text-gray-500">
-                                    <MapPin size={14} />
-                                    {profile.location}
-                                </div>
-                            )}
+                            <ArrowRight
+                                size={19}
+                                className="text-gray-300 transition group-hover:translate-x-1 group-hover:text-[#5b3df5]"
+                            />
                         </div>
+
+                        <h2 className="mt-6 text-xl font-bold text-[#171725]">
+                            What I bring
+                        </h2>
+
+                        <p className="mt-2 text-sm leading-6 text-gray-500">
+                            View and update the skills, products, resources,
+                            experience and capacity you can contribute.
+                        </p>
+
+                        <div className="mt-5 flex flex-wrap gap-2">
+                            {userCapabilities
+                                .slice(0, 4)
+                                .map((capability) => (
+                                    <span
+                                        key={capability}
+                                        className="rounded-full bg-[#f8f9fc] px-3 py-1.5 text-xs font-medium text-gray-700"
+                                    >
+                                        {capability}
+                                    </span>
+                                ))}
+                        </div>
+                    </button>
+
+                    {/* Create opportunity */}
+                    <button
+                        type="button"
+                        onClick={() => navigate('/create-opportunity')}
+                        className="group rounded-3xl border border-[#e5e7eb] bg-white p-6 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-[#f4b942]/50 hover:shadow-md"
+                    >
+                        <div className="flex items-start justify-between gap-4">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#fff8e7] text-[#9a6b00]">
+                                <Plus size={23} />
+                            </div>
+
+                            <ArrowRight
+                                size={19}
+                                className="text-gray-300 transition group-hover:translate-x-1 group-hover:text-[#5b3df5]"
+                            />
+                        </div>
+
+                        <h2 className="mt-6 text-xl font-bold text-[#171725]">
+                            Create an opportunity
+                        </h2>
+
+                        <p className="mt-2 text-sm leading-6 text-gray-500">
+                            Tell TogetherWorks what you're trying to
+                            accomplish. We'll help understand what you need
+                            and find complementary people.
+                        </p>
+
+                        <div className="mt-5 inline-flex items-center text-sm font-semibold text-[#171725]">
+                            Tell us what you need
+                            <ArrowRight className="ml-2" size={16} />
+                        </div>
+                    </button>
+                </section>
+
+                {/* My capabilities */}
+                <section className="mt-8 rounded-3xl border border-[#e5e7eb] bg-white p-5 shadow-sm sm:p-6">
+                    <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                        <div className="flex items-start gap-4">
+                            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#eeeaff] text-[#5b3df5]">
+                                <Sparkles size={21} />
+                            </div>
+
+                            <div>
+                                <p className="text-sm font-semibold text-[#171725]">
+                                    Your capability profile
+                                </p>
+
+                                <p className="mt-1 text-sm text-gray-500">
+                                    This is what TogetherWorks uses to find
+                                    opportunities that fit you.
+                                </p>
+
+                                <div className="mt-4 flex flex-wrap gap-2">
+                                    {userCapabilities.length > 0 ? (
+                                        userCapabilities.map((capability) => (
+                                            <span
+                                                key={capability}
+                                                className="rounded-full bg-[#f8f9fc] px-3 py-1.5 text-xs font-medium text-gray-700"
+                                            >
+                                                {capability}
+                                            </span>
+                                        ))
+                                    ) : (
+                                        <span className="text-sm text-gray-400">
+                                            No capabilities added yet.
+                                        </span>
+                                    )}
+                                </div>
+
+                                {profile.location && (
+                                    <div className="mt-4 flex items-center gap-1.5 text-xs text-gray-500">
+                                        <MapPin size={14} />
+                                        {profile.location}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        <Link
+                            to="/onboarding"
+                            className="shrink-0 text-sm font-semibold text-[#5b3df5] hover:text-[#4728d9]"
+                        >
+                            Edit profile
+                        </Link>
                     </div>
                 </section>
 
-                {/* Opportunities */}
+                {/* My opportunities */}
+                <section className="mt-10">
+                    <div>
+                        <h2 className="text-2xl font-bold text-[#171725]">
+                            My opportunities
+                        </h2>
+
+                        <p className="mt-1 text-sm text-gray-500">
+                            Opportunities you've created and are working on.
+                        </p>
+                    </div>
+
+                    <div className="mt-5 rounded-3xl border border-dashed border-[#d9dbe3] bg-white p-8 text-center sm:p-10">
+                        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[#f8f9fc] text-gray-400">
+                            <Plus size={22} />
+                        </div>
+
+                        <h3 className="mt-4 font-semibold text-[#171725]">
+                            No opportunities yet
+                        </h3>
+
+                        <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-gray-500">
+                            Have something you're trying to make happen?
+                            Create an opportunity and let TogetherWorks help
+                            you find the right capabilities.
+                        </p>
+
+                        <button
+                            type="button"
+                            onClick={() => navigate('/create-opportunity')}
+                            className="mt-5 inline-flex items-center rounded-xl bg-[#171725] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#2a2a3a]"
+                        >
+                            Create an opportunity
+                            <ArrowRight className="ml-2" size={16} />
+                        </button>
+                    </div>
+                </section>
+
+                {/* Opportunities for you */}
                 <section className="mt-10">
                     <div className="flex items-end justify-between gap-4">
                         <div>
@@ -190,7 +317,8 @@ export default function HomePage() {
                             </h2>
 
                             <p className="mt-1 text-sm text-gray-500">
-                                Based on what you can already contribute.
+                                Things other people need that could use what
+                                you bring.
                             </p>
                         </div>
                     </div>
@@ -252,7 +380,7 @@ export default function HomePage() {
                                         </div>
                                     </div>
 
-                                    {/* What user brings */}
+                                    {/* Matching capabilities */}
                                     {matchedCapabilities.length > 0 && (
                                         <div className="mt-5">
                                             <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">
@@ -278,7 +406,7 @@ export default function HomePage() {
                                     {missingCapabilities.length > 0 && (
                                         <div className="mt-4">
                                             <p className="text-xs text-gray-500">
-                                                Your team may still need{' '}
+                                                May still need{' '}
                                                 <span className="font-semibold text-[#171725]">
                                                     {
                                                         missingCapabilities[0]
@@ -305,7 +433,7 @@ export default function HomePage() {
                                         }
                                         className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-[#5b3df5] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#4728d9]"
                                     >
-                                        Build this
+                                        View opportunity
                                         <ArrowRight
                                             className="ml-2"
                                             size={16}
@@ -317,7 +445,7 @@ export default function HomePage() {
                     </div>
                 </section>
 
-                {/* People section */}
+                {/* Network */}
                 <section className="mt-10 rounded-3xl border border-[#e5e7eb] bg-white p-6 shadow-sm sm:p-7">
                     <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex items-start gap-4">
@@ -331,7 +459,7 @@ export default function HomePage() {
                                 </h2>
 
                                 <p className="mt-1 max-w-xl text-sm leading-6 text-gray-500">
-                                    TogetherWorks can connect your capabilities
+                                    TogetherWorks connects your capabilities
                                     with people who have what you're missing.
                                 </p>
                             </div>
@@ -342,40 +470,13 @@ export default function HomePage() {
                             className="inline-flex shrink-0 items-center justify-center rounded-xl border border-[#e5e7eb] px-5 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
                         >
                             Explore network
-                            <ArrowRight className="ml-2" size={16} />
+                            <ArrowRight
+                                className="ml-2"
+                                size={16}
+                            />
                         </button>
                     </div>
                 </section>
-
-                {/* Bottom navigation */}
-                <nav className="mt-10 border-t border-[#e5e7eb] pt-6">
-                    <div className="flex items-center justify-center gap-8 text-sm">
-                        <span className="font-semibold text-[#5b3df5]">
-                            Home
-                        </span>
-
-                        <button
-                            type="button"
-                            className="text-gray-500 transition hover:text-[#5b3df5]"
-                        >
-                            Discover
-                        </button>
-
-                        <button
-                            type="button"
-                            className="text-gray-500 transition hover:text-[#5b3df5]"
-                        >
-                            Network
-                        </button>
-
-                        <button
-                            type="button"
-                            className="text-gray-500 transition hover:text-[#5b3df5]"
-                        >
-                            Profile
-                        </button>
-                    </div>
-                </nav>
             </div>
         </main>
     )
