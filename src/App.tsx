@@ -1,9 +1,12 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import LandingPage from './pages/LandingPage'
+
 export default function App() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <h1 className="text-5xl font-bold">
-        TogetherWorks
-      </h1>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
