@@ -7,6 +7,8 @@ import {
     MapPin,
     ShieldCheck,
     Sparkles,
+    Star,
+    Trophy,
     Users,
 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
@@ -35,6 +37,11 @@ interface Match {
     matchedReasons: string[]
     partialReason?: string
     verified: boolean
+
+    // Trust signals for MVP
+    rating: number
+    completedOpportunities: number
+    capabilityEvidence: string[]
 }
 
 const matches: Match[] = [
@@ -56,6 +63,13 @@ const matches: Match[] = [
             'Event experience',
         ],
         verified: true,
+        rating: 4.9,
+        completedOpportunities: 18,
+        capabilityEvidence: [
+            'Bridal styling',
+            'Event braiding',
+            'Large-group styling',
+        ],
     },
     {
         id: 2,
@@ -75,6 +89,13 @@ const matches: Match[] = [
             'Team capacity',
         ],
         verified: true,
+        rating: 4.8,
+        completedOpportunities: 14,
+        capabilityEvidence: [
+            'Team of braiders',
+            'Event styling',
+            'Client coordination',
+        ],
     },
     {
         id: 3,
@@ -94,6 +115,13 @@ const matches: Match[] = [
         ],
         partialReason: 'Based in Tema rather than Accra.',
         verified: true,
+        rating: 4.7,
+        completedOpportunities: 9,
+        capabilityEvidence: [
+            'Wedding styling',
+            'Private events',
+            'Braiding',
+        ],
     },
     {
         id: 4,
@@ -113,6 +141,12 @@ const matches: Match[] = [
         ],
         partialReason: 'Saturday availability needs confirmation.',
         verified: false,
+        rating: 4.6,
+        completedOpportunities: 7,
+        capabilityEvidence: [
+            'Event styling',
+            'Hair braiding',
+        ],
     },
 ]
 
@@ -309,7 +343,7 @@ export default function OpportunityMatchesPage() {
                                                         <ShieldCheck
                                                             size={12}
                                                         />
-                                                        Verified
+                                                        Verified profile
                                                     </span>
                                                 )}
                                             </div>
@@ -331,6 +365,23 @@ export default function OpportunityMatchesPage() {
 
                                                 <span>
                                                     {match.experience}
+                                                </span>
+                                            </div>
+
+                                            {/* Trust signals */}
+                                            <div className="mt-3 flex flex-wrap items-center gap-3">
+                                                <span className="inline-flex items-center gap-1 text-xs font-semibold text-gray-600">
+                                                    <Star
+                                                        size={13}
+                                                        className="fill-current"
+                                                    />
+                                                    {match.rating.toFixed(1)}
+                                                </span>
+
+                                                <span className="inline-flex items-center gap-1 text-xs text-gray-500">
+                                                    <Trophy size={13} />
+                                                    {match.completedOpportunities}{' '}
+                                                    opportunities completed
                                                 </span>
                                             </div>
                                         </div>
@@ -357,6 +408,36 @@ export default function OpportunityMatchesPage() {
                                     <p className="mt-2 text-sm leading-6 text-gray-700">
                                         {match.contribution}
                                     </p>
+                                </div>
+
+                                {/* Capability evidence */}
+                                <div className="mt-5">
+                                    <div className="flex items-center gap-2">
+                                        <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+                                            Capability evidence
+                                        </p>
+
+                                        <span className="rounded-full bg-[#eeeaff] px-2 py-0.5 text-[10px] font-semibold text-[#5b3df5]">
+                                            Profile evidence
+                                        </span>
+                                    </div>
+
+                                    <div className="mt-2 flex flex-wrap gap-2">
+                                        {match.capabilityEvidence.map(
+                                            (evidence) => (
+                                                <span
+                                                    key={evidence}
+                                                    className="inline-flex items-center gap-1.5 rounded-full border border-[#e5e7eb] bg-white px-3 py-1.5 text-xs font-medium text-gray-600"
+                                                >
+                                                    <CheckCircle2
+                                                        size={13}
+                                                        className="text-[#5b3df5]"
+                                                    />
+                                                    {evidence}
+                                                </span>
+                                            ),
+                                        )}
+                                    </div>
                                 </div>
 
                                 {/* Match reasons */}
@@ -390,6 +471,26 @@ export default function OpportunityMatchesPage() {
                                         {match.partialReason}
                                     </p>
                                 )}
+
+                                {/* Trust note */}
+                                <div className="mt-5 flex items-start gap-3 rounded-2xl border border-[#e5e7eb] bg-white p-4">
+                                    <ShieldCheck
+                                        size={17}
+                                        className="mt-0.5 shrink-0 text-[#5b3df5]"
+                                    />
+
+                                    <div>
+                                        <p className="text-xs font-semibold text-[#171725]">
+                                            Trust signals
+                                        </p>
+
+                                        <p className="mt-1 text-xs leading-5 text-gray-500">
+                                            {match.verified
+                                                ? 'This profile includes verification and capability evidence.'
+                                                : 'This profile has not completed verification yet.'}
+                                        </p>
+                                    </div>
+                                </div>
 
                                 {/* Actions */}
                                 <div className="mt-6 flex flex-col gap-3 border-t border-[#e5e7eb] pt-5 sm:flex-row sm:items-center sm:justify-between">
@@ -474,3 +575,4 @@ export default function OpportunityMatchesPage() {
         </main>
     )
 }
+
