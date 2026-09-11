@@ -40,7 +40,7 @@ export default function LandingPage() {
                     {/* Hero copy */}
                     <div>
                         <div className="mb-6 inline-flex items-center rounded-full border border-[#5B3DF5]/20 bg-[#5B3DF5]/5 px-4 py-2 text-sm font-medium text-[#5B3DF5]">
-                            AI-powered opportunity matching
+                            Where capabilities meet opportunity
                         </div>
 
                         <h1 className="max-w-3xl text-5xl font-bold leading-[1.05] tracking-tight text-[#171725] sm:text-6xl lg:text-7xl">
@@ -51,10 +51,10 @@ export default function LandingPage() {
                         </h1>
 
                         <p className="mt-7 max-w-xl text-lg leading-8 text-gray-600">
-                            What you know, what you can do, and what you need
-                            can become something bigger when connected to the
-                            right people. TogetherWorks helps turn capabilities
-                            and needs into meaningful opportunities.
+                            Tell TogetherWorks what you can do or what you
+                            need. It helps understand the details, find
+                            complementary people, and turn the connection into
+                            a real opportunity.
                         </p>
 
                         <div className="mt-9 flex flex-col gap-4 sm:flex-row">
@@ -62,7 +62,7 @@ export default function LandingPage() {
                                 to="/onboarding"
                                 className="rounded-full bg-[#5B3DF5] px-7 py-3.5 text-center text-sm font-semibold text-white shadow-lg shadow-[#5B3DF5]/20 transition hover:bg-[#4728D9]"
                             >
-                                Discover what you can bring
+                                See what you can build
                             </Link>
 
                             <a
@@ -158,7 +158,7 @@ export default function LandingPage() {
 
                             <p className="mt-4 leading-7 text-gray-600">
                                 Tell TogetherWorks about your skills,
-                                experience, resources, interests, or the ways
+                                experience, resources, capacity, or the ways
                                 you can contribute.
                             </p>
 
@@ -286,15 +286,15 @@ export default function LandingPage() {
                             </p>
 
                             <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#171725] sm:text-4xl">
-                                You don't need to know exactly how to describe
-                                an opportunity.
+                                Just describe what you need. We'll help make
+                                sense of it.
                             </h2>
 
                             <p className="mt-5 text-lg leading-8 text-gray-600">
-                                Just explain what you're trying to accomplish.
-                                TogetherWorks can break the request into the
-                                important pieces needed to find the right
-                                people.
+                                Describe what you're trying to accomplish in
+                                your own words. TogetherWorks identifies the
+                                important details, then uses them to find people
+                                who could contribute.
                             </p>
                         </div>
 
