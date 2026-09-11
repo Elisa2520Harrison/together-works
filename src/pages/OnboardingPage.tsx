@@ -211,7 +211,7 @@ export default function OnboardingPage() {
                             </p>
 
                             <h1 className="mt-3 text-3xl font-bold tracking-tight text-[#171725] sm:text-4xl">
-                                What can you bring to the table?
+                               What do you bring?
                             </h1>
 
                             <p className="mx-auto mt-5 max-w-xl leading-7 text-gray-600">

@@ -86,6 +86,162 @@ const workspaceData = {
             'Confirm availability of all team members',
         ],
     },
+
+    'corporate-gift-bags': {
+        feasibility: 88,
+        status: 'Ready to build',
+        team: [
+            {
+                name: 'Ama',
+                role: 'Production',
+                contribution: 'Gift bag assembly and production',
+            },
+            {
+                name: 'Akosua',
+                role: 'Branding',
+                contribution: 'Corporate branding and packaging design',
+            },
+            {
+                name: 'Esi',
+                role: 'Sourcing',
+                contribution: 'Materials and supplier coordination',
+            },
+            {
+                name: 'Yaa',
+                role: 'Logistics',
+                contribution: 'Packaging coordination and delivery',
+            },
+        ],
+        economics: [
+            ['Opportunity budget', 'GH₵18,000'],
+            ['Materials & sourcing', 'GH₵6,500'],
+            ['Production', 'GH₵5,000'],
+            ['Branding & finishing', 'GH₵3,000'],
+            ['Logistics', 'GH₵2,000'],
+        ],
+        timeline: [
+            {
+                days: 'Days 1–2',
+                title: 'Confirm requirements',
+                description:
+                    'Confirm quantity, bag specifications, branding and delivery requirements.',
+            },
+            {
+                days: 'Days 2–4',
+                title: 'Source materials',
+                description:
+                    'Confirm suppliers and secure bags, packaging materials and branding supplies.',
+            },
+            {
+                days: 'Days 4–8',
+                title: 'Prepare branding',
+                description:
+                    'Finalize corporate artwork, logos and branding specifications.',
+            },
+            {
+                days: 'Days 7–13',
+                title: 'Produce gift bags',
+                description:
+                    'Assemble, brand and finish the corporate gift bags.',
+            },
+            {
+                days: 'Days 13–15',
+                title: 'Inspect and deliver',
+                description:
+                    'Complete quality checks, package the order and coordinate delivery.',
+            },
+        ],
+        dependencies: [
+            'Final quantity and bag specifications',
+            'Corporate logo and branding assets',
+            'Supplier pricing confirmation',
+            'Delivery date confirmation',
+        ],
+        actions: [
+            'Confirm final quantity and bag specifications',
+            'Collect corporate branding and logo assets',
+            'Confirm supplier pricing and production timeline',
+            'Confirm delivery location and date',
+        ],
+    },
+
+    'event-merchandise': {
+        feasibility: 86,
+        status: 'Ready to build',
+        team: [
+            {
+                name: 'Akosua',
+                role: 'Marketing',
+                contribution: 'Event branding and customer coordination',
+            },
+            {
+                name: 'Abena',
+                role: 'Creative Production',
+                contribution: 'Merchandise design and production',
+            },
+            {
+                name: 'Ama',
+                role: 'Production',
+                contribution: 'Merchandise preparation and finishing',
+            },
+            {
+                name: 'Yaa',
+                role: 'Logistics',
+                contribution: 'Packaging and event-day delivery',
+            },
+        ],
+        economics: [
+            ['Opportunity budget', 'GH₵22,000'],
+            ['Materials & production', 'GH₵10,000'],
+            ['Design & branding', 'GH₵4,000'],
+            ['Finishing & packaging', 'GH₵3,000'],
+            ['Logistics', 'GH₵2,500'],
+        ],
+        timeline: [
+            {
+                days: 'Days 1–2',
+                title: 'Define merchandise',
+                description:
+                    'Confirm event requirements, quantities, products and branding direction.',
+            },
+            {
+                days: 'Days 2–5',
+                title: 'Create designs',
+                description:
+                    'Develop merchandise concepts and finalize event branding.',
+            },
+            {
+                days: 'Days 5–10',
+                title: 'Produce merchandise',
+                description:
+                    'Produce the agreed merchandise and complete the main branding work.',
+            },
+            {
+                days: 'Days 10–13',
+                title: 'Finish and package',
+                description:
+                    'Complete quality checks, finishing and event-ready packaging.',
+            },
+            {
+                days: 'Days 13–15',
+                title: 'Deliver',
+                description:
+                    'Coordinate final delivery and ensure the merchandise reaches the event team.',
+            },
+        ],
+        dependencies: [
+            'Final merchandise quantity',
+            'Event branding and artwork approval',
+            'Production supplier confirmation',
+            'Event date and delivery location',
+        ],
+        actions: [
+            'Confirm merchandise types and quantities',
+            'Approve final event branding and designs',
+            'Confirm production supplier and pricing',
+            'Confirm event delivery date and location',
+        ],
+    },
 }
 
 export default function WorkspacePage() {
@@ -366,7 +522,9 @@ export default function WorkspacePage() {
 
                         <div>
                             <h2 className="font-bold text-[#171725]">
-                                21-day execution plan
+                                {opportunity.id === 'school-uniforms'
+                                    ? '21-day execution plan'
+                                    : '15-day execution plan'}
                             </h2>
 
                             <p className="text-sm text-gray-500">
