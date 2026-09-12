@@ -53,9 +53,14 @@ export default function OnboardingPage() {
                 <div className="mx-auto max-w-4xl">
                     {/* Header */}
                     <header className="mb-10 flex items-center gap-2">
-                        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#5b3df5] text-sm font-bold text-white">
+                        <button
+                            type="button"
+                            onClick={() => navigate('/onboarding')}
+                            className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#5b3df5] text-sm font-bold text-white transition hover:bg-[#4728d9]"
+                            aria-label="Go to onboarding"
+                        >
                             T
-                        </div>
+                        </button>
 
                         <span className="text-lg font-semibold text-[#171725]">
                             TogetherWorks
