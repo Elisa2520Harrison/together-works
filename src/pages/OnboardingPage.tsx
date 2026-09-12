@@ -217,7 +217,7 @@ export default function OnboardingPage() {
                             <p className="mx-auto mt-5 max-w-xl leading-7 text-gray-600">
                                 Tell TogetherWorks about your skills,
                                 products, resources, connections, or anything
-                                else you can contribute. Our AI will help
+                                else you can contribute. TogetherWorks will help
                                 identify where those capabilities could create
                                 opportunities.
                             </p>
